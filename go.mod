@@ -1,4 +1,4 @@
-module qrcode-generator
+module qrcode-generator-api
 
 go 1.19
 
