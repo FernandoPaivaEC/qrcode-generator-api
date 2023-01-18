@@ -62,7 +62,7 @@ func main() {
 		return context.Status(fiber.StatusOK).Send(qrcodePng)
 	})
 
-	err := app.Listen(":3000")
+	err := app.Listen(":3001")
 
 	if err != nil {
 		panic("Error starting server: " + err.Error())
