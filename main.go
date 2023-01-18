@@ -21,13 +21,13 @@ func main() {
 		AllowMethods: "GET,OPTIONS",
 	}))
 
-	app.Get("/", func(context *fiber.Ctx) error {
+	app.Get("/qrcode", func(context *fiber.Ctx) error {
 		return context.Status(fiber.StatusBadRequest).SendString(
 			"Provide some text to be encoded as a QR code",
 		)
 	})
 
-	app.Get("/:text", func(context *fiber.Ctx) error {
+	app.Get("/qrcode/:text", func(context *fiber.Ctx) error {
 		textToBeEncoded := context.Params("text")
 
 		qrcodePng, err := qrcode.Encode(textToBeEncoded, qrcode.Medium, 512)
@@ -41,7 +41,7 @@ func main() {
 		return context.Status(fiber.StatusOK).Send(qrcodePng)
 	})
 
-	app.Get("/:text/:size", func(context *fiber.Ctx) error {
+	app.Get("/qrcode/:text/:size", func(context *fiber.Ctx) error {
 		textToBeEncoded := context.Params("text")
 		qrcodeImageSize, err := strconv.ParseUint(context.Params("size"), 10, 64)
 
